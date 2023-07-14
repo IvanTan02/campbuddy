@@ -29,9 +29,7 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 // Mongoose Connection 
-const dbUrl = 'mongodb://localhost:27017/campbuddy'
-//process.env.MONGO_DB_URL;
-
+const dbUrl = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/campbuddy';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -55,12 +53,11 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.use(mongoSanitize());
 
 // Session Store
+const secret = process.env.SECRET || 'dev-secret';
 const store = MongoStore.create({
     mongoUrl: dbUrl,
     touchAfter: 24 * 60 * 60,
-    crypto: {
-        secret: 'secret'
-    }
+    crypto: { secret }
 });
 store.on('error', function (e) {
     console.log('Session store error', e)
@@ -70,7 +67,7 @@ store.on('error', function (e) {
 const sessionConfig = {
     store,
     name: 'session',
-    secret: 'secret',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
