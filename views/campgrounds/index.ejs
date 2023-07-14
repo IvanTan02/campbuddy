@@ -1,0 +1,131 @@
+<% layout('layouts/boilerplate') %>
+<div id="cluster-map" class="border border-2 rounded mb-4" crossorigin="anonymous"></div>
+<div class="row">
+    <div class="col-8 offset-2">
+        <div class="search-bar input-group mb-4">
+            <input id="search-input" type="text" class="form-control" placeholder="Search for a Campground"
+                aria-label="Recipient's username" aria-describedby="basic-addon2">
+            <span class="input-group-text" id="basic-addon2">&#128269;</span>
+        </div>
+    </div>
+</div>
+<div id="searchResults" class="container">
+    <% for (let i = 0; i < renderInTriplets; i+=3) { %>
+    <div class="row mb-4">
+        <div class="col-4">
+            <div class="card">
+                <img src="<%= campgrounds[i].images[0].url %>" class="card-img-top"
+                    alt="Image of <%= campgrounds[i].name%>" style="height: 225px" crossorigin="anonymous">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="camp-name card-title"><%= campgrounds[i].name %></h5>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end" crossorigin="anonymous">
+                            <p class="camp-rating text-right">
+                                <% if (campgrounds[i].campRating === -1 ) { %>
+                                No Reviews
+                                <% } else { %>
+                                <%= campgrounds[i].campRating%>&#9733; (<%= campgrounds[i].reviews.length %>)
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <p class="camp-location"><%= campgrounds[i].location %></p>
+                    <p class="camp-price">RM<%= campgrounds[i].price %>/night</p>
+                    <a href="/campgrounds/<%= campgrounds[i]._id%>" class="btn btn-outline-primary">View Campground</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="<%= campgrounds[i+1].images[0].url %>" class="card-img-top"
+                    alt="Image of <%= campgrounds[i+1].name%>" style="height: 225px" crossorigin="anonymous">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="camp-name card-title"><%= campgrounds[i].name %></h5>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <p class="camp-rating text-right">
+                                <% if (campgrounds[i+1].campRating === -1 ) { %>
+                                No Reviews
+                                <% } else { %>
+                                <%= campgrounds[i+1].campRating%>&#9733; (<%= campgrounds[i+1].reviews.length %>)
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <p class="camp-location"><%= campgrounds[i+1].location %></p>
+                    <p class="camp-price">RM<%= campgrounds[i+1].price %>/night</p>
+                    <a href="/campgrounds/<%= campgrounds[i+1]._id%>" class="btn btn-outline-primary">View
+                        Campground</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="card">
+                <img src="<%= campgrounds[i+2].images[0].url %>" class="card-img-top"
+                    alt="Image of <%= campgrounds[i+2].name%>" style="height: 225px" crossorigin="anonymous">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="camp-name card-title"><%= campgrounds[i+2].name %></h5>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <p class="camp-rating text-right">
+                                <% if (campgrounds[i+2].campRating === -1 ) { %>
+                                No Reviews
+                                <% } else { %>
+                                <%= campgrounds[i+2].campRating%>&#9733; (<%= campgrounds[i+2].reviews.length %>)
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <p class="camp-location"><%= campgrounds[i+2].location %></p>
+                    <p class="camp-price">RM<%= campgrounds[i+2].price %>/night</p>
+                    <a href="/campgrounds/<%= campgrounds[i+2]._id%>" class="btn btn-outline-primary">View
+                        Campground</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% } %>
+    <div class="row mb-4">
+        <% for (let i = campgrounds.length - remainingCampgrounds; i < campgrounds.length; i++) { %>
+        <div class="col-4">
+            <div class="card">
+                <img src="<%= campgrounds[i].images[0].url %>" class="card-img-top"
+                    alt="Image of <%= campgrounds[i].name%>" style="height: 225px" crossorigin="anonymous">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-8">
+                            <h5 class="camp-name card-title"><%= campgrounds[i].name %></h5>
+                        </div>
+                        <div class="col-4 d-flex justify-content-end">
+                            <p class="camp-rating text-right">
+                                <% if (campgrounds[i].campRating === -1 ) { %>
+                                No Reviews
+                                <% } else { %>
+                                <%= campgrounds[i].campRating%>&#9733; (<%= campgrounds[i].reviews.length %>)
+                            </p>
+                            <% } %>
+                        </div>
+                    </div>
+                    <p class="camp-location"><%= campgrounds[i].location %></p>
+                    <p class="camp-price">RM<%= campgrounds[i].price %>/night</p>
+                    <a href="/campgrounds/<%= campgrounds[i]._id%>" class="btn btn-outline-primary">View
+                        Campground</a>
+                </div>
+            </div>
+        </div>
+        <% } %>
+    </div>
+</div>
+
+<script>
+    const mapboxToken = '<%- process.env.MAPBOX_TOKEN %>';
+    const campgrounds = { features: <%- JSON.stringify(campgrounds) %>}
+</script>
+<script src="/javascripts/clusterMap.js"></script>
+<script src="/javascripts/searchCamp.js"></script>

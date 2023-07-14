@@ -1,0 +1,92 @@
+    /* Adjust the height of the container to center the card */
+    body,
+    html {
+        height: 100%;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+            url("https://images.unsplash.com/photo-1559521783-1d1599583485?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80");
+        background-size: cover;
+        background-position: center;
+    }
+
+    /* Center the card vertically and horizontally */
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 86%;
+    }
+
+    .navbar-brand {
+        font-size: 1.9em;
+        margin-right: 0em;
+    }
+
+    .navbar-brand img {
+        /* border: 1px solid red; */
+        margin-top: 0em;
+        width: 40px;
+        height: 40px;
+    }
+
+    .navbar-brand span {
+        /* border: 1px solid red; */
+        padding: 1.2em 0 0 0;
+        margin-top: 1em;
+    }
+
+    .nav-link {
+        padding: 0.2em 0;
+        font-size: 1.2em;
+        font-weight: light;
+        /* color: white; */
+        margin-top: 0.3em;
+        margin-left: 0.4em;
+        border-bottom: 0.25rem solid transparent;
+    }
+
+    .nav-link:hover {
+        color: white;
+    }
+
+    .dropdown-menu {
+        margin-top: 0;
+        transform: translateX(-20%);
+        left: 50%;
+    }
+
+    .main-content {
+        font-size: 1.2em;
+        font-weight: light;
+    }
+
+    .main-content h1 {
+        font-size: 2.1em
+    }
+
+    .main-content a {
+        font-size: 1.1em;
+        padding: 0.4em 1em;
+    }
+
+    .login-form {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 0.6em;
+        padding: 4em 7em;
+    }
+
+    .create-form {
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 4em 7em;
+        border-radius: 0.6em;
+        box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
+    }
+
+    .contact-box {
+        background-color: rgba(255, 255, 255, 0.2);
+        border-radius: 0.6em;
+        padding: 4em 4em;
+    }
+
+    .contact-box h5 {
+        font-weight: light;
+    }

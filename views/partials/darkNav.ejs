@@ -1,0 +1,47 @@
+<nav class="navbar sticky-top navbar-expand-lg navbar-dark bg-dark py-3">
+    <div class="container-fluid ms-5">
+        <a class="navbar-brand" href="/">
+            <img src="https://cdn-icons-png.flaticon.com/512/1064/1064748.png" class="d-inline-block align-text-top"
+                alt="Logo" crossorigin="anonymous"><span>CampBuddy</span></a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto ms-4 mb-2 mb-lg-0">
+                <li class="nav-item">
+                    <a class="nav-link" href="/">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/campgrounds">Campgrounds</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/contact">Contact</a>
+                </li>
+            </ul>
+            <div class="navbar-nav me-5">
+                <ul class="navbar-nav me-4 mb-2 mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            <% if (!currentUser) { %>
+                            Account
+                            <% } else { %>
+                            <%= currentUser.username %>
+                            <% } %>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <% if (!currentUser) { %>
+                            <li><a class="dropdown-item" href="/login">Sign In</a></li>
+                            <li><a class="dropdown-item" href="/register">Create an Account</a></li>
+                            <% } else { %>
+                            <li><a class="dropdown-item" href="/campgrounds/create">Add a Campground</a></li>
+                            <li><a class="dropdown-item" href="/logout">Logout</a></li>
+                            <% } %>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</nav>

@@ -1,0 +1,45 @@
+<% layout('layouts/campFormBoilerplate') %>
+<div class="row">
+    <div class="create-form col-10 offset-1">
+        <h2 class="text-center mb-3">Create Campground</h2>
+        <form action="/campgrounds" method="post" class="validated-form" enctype="multipart/form-data" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="name">Name:</label>
+                <input class="form-control" type="text" name="campground[name]" id="name" size="80" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location:</label>
+                <input class="form-control" type="text" name="campground[location]" id="location" size="80" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price:</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">RM</span>
+                    <input type="text" class="form-control" aria-label="Price" aria-describedby="price-label"
+                        name="campground[price]" placeholder="0.00" size="80" required>
+                    <div class="valid-feedback">Looks good!</div>
+                    <div class="invalid-feedback">This field can't be empty</div>
+                </div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description:</label>
+                <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="3"
+                    required></textarea>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="form-label">Add Images:</label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
+            <div class="mb-3 d-flex justify-content-center">
+                <button class="btn btn-success me-2">Create Campground</button>
+                <a class="btn btn-outline-danger" href="/campgrounds">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

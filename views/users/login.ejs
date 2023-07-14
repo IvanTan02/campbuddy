@@ -1,0 +1,19 @@
+<% layout('layouts/centerBoilerplate') %>
+<div class="login-form col-8 offset-2 text-white">
+    <h1 class="mb-3">Sign In</h1>
+    <form action="/login" method="post" class="validated-form" novalidate>
+        <div class="mb-3">
+            <label class="form-label" for="username">Username:</label>
+            <input class="form-control" type="text" name="username" id="username" size="80" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">This field can't be empty</div>
+        </div>
+        <div class="mb-3">
+            <label class="form-label" for="password">Password:</label>
+            <input class="form-control" type="password" name="password" id="password" size="80" required>
+            <div class="valid-feedback">Looks good!</div>
+            <div class="invalid-feedback">This field can't be empty</div>
+        </div>
+        <button class="btn btn-primary">Login</button>
+    </form>
+</div>

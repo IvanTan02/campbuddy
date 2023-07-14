@@ -1,0 +1,83 @@
+<% layout('layouts/boilerplate') %>
+
+<div class="row">
+    <div class="edit-form col-md-8 offset-2">
+        <h2 class="text-center mb-3">Edit Campground Details</h2>
+        <form action="/campgrounds/<%= campground._id %>?_method=PUT" method="post" class="validated-form"
+            enctype="multipart/form-data" novalidate>
+            <div class="mb-3">
+                <label class="form-label" for="name">Name:</label>
+                <input class="form-control" type="text" name="campground[name]" id="name" value="<%= campground.name %>"
+                    size="80" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="location">Location:</label>
+                <input class="form-control" type="text" name="campground[location]" id="location"
+                    value="<%= campground.location %>" size="80" required>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="price">Price:</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">RM</span>
+                    <input type="text" class="form-control" aria-label="Price" aria-describedby="price-label"
+                        name="campground[price]" placeholder="0.00" value="<%= campground.price %>" size="80" required>
+                </div>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-3">
+                <label class="form-label" for="description">Description:</label>
+                <textarea class="form-control" name="campground[description]" id="description" cols="30" rows="3"
+                    required><%= campground.description %></textarea>
+                <div class="valid-feedback">Looks good!</div>
+                <div class="invalid-feedback">This field can't be empty</div>
+            </div>
+            <div class="mb-4">
+                <label for="image" class="form-label">Add More Images:</label>
+                <input class="form-control" type="file" id="image" name="image" multiple>
+            </div>
+            <hr>
+            <h3 class="text-center mb-3">Select Images to Remove</h3>
+            <% for (let i = 0; i < renderInThrees; i+=3) { %>
+            <div class="row mb-3">
+                <div class="mb-3 d-flex justify-content-evenly">
+                    <img src="<%= campground.images[i].thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                            value="<%= campground.images[i].filename %>">
+                    </div>
+                    <img src="<%= campground.images[i+1].thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                            value="<%= campground.images[i+1].filename %>">
+                    </div>
+                    <img src="<%= campground.images[i+2].thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                            value="<%= campground.images[i+2].filename %>">
+                    </div>
+                </div>
+            </div>
+            <% } %>
+            <div class="row mb-3">
+                <div class="mb-3 d-flex justify-content-center">
+                    <% for (let i = campground.images.length - remainingImages; i < campground.images.length; i++) { %>
+                    <img src="<%= campground.images[i].thumbnail %>" class="img-thumbnail" alt="">
+                    <div class="form-check-inline">
+                        <input type="checkbox" id="image-<%= i %>" name="deleteImages[]"
+                            value="<%= campground.images[i].filename %>">
+                    </div>
+                    <% } %>
+                </div>
+            </div>
+            <div class="mb-3 d-flex justify-content-center flex-wrap">
+                <button class="btn btn-success me-2">Update Campground</button>
+                <a class="btn btn-outline-danger" href="/campgrounds/<%= campground._id %>">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>
