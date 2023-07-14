@@ -1,5 +1,7 @@
+let dbUrl = process.env.MONGO_DB_URL;
 if (process.env.NODE_ENV !== 'production') {
     require('dotenv').config();
+    dbUrl = 'mongodb://localhost:27017/campbuddy';
 }
 
 // Utilities
@@ -29,7 +31,6 @@ const reviewRoutes = require('./routes/reviewRoutes');
 const userRoutes = require('./routes/userRoutes');
 
 // Mongoose Connection 
-const dbUrl = process.env.MONGO_DB_URL || 'mongodb://localhost:27017/campbuddy';
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useUnifiedTopology: true
